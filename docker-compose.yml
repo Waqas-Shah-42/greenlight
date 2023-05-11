@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  greenlight:
+    build: .
+    container_name: greenlight
+    environment:
+      - TARGET_APP=web
+    depends_on:
+      - postgres
+    ports:
+      - 5000:4000
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: greenlight
+      POSTGRES_PASSWORD: green123!
+    volumes:
+      - greenlight_postgresql:/var/lib/postgresql
+      - greenlight_postgresql_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    container_name: cryptaxview_postgresql_dev
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+volumes:
+  greenlight_postgresql:
+  greenlight_postgresql_data:

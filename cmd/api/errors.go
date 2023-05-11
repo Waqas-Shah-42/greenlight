@@ -10,13 +10,17 @@ func (app *application) logError(r *http.Request, err error) {
 }
 
 func (app *application) errorResponse(w http.ResponseWriter, r *http.Request, status int, message interface{}) {
-	env := envelope{"errror": message}
+	env := envelope{"error": message}
 
 	err := app.writeJSON(w, status, env, nil)
 	if err != nil {
 		app.logError(r, err)
 		w.WriteHeader(5000)
 	}
+}
+
+func (app *application) badRequestResponse(w http.ResponseWriter, r *http.Request, err error) {
+	app.errorResponse(w,r, http.StatusBadRequest, err.Error())
 }
 
 func (app *application) serverErrorResponse(w http.ResponseWriter, r *http.Request, err error) {
