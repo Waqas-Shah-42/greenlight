@@ -6,18 +6,20 @@ services:
     container_name: greenlight
     environment:
       - TARGET_APP=web
+      - DB_DSN=postgres://postgres:green123@postgres/greenlight?sslmode=disable
     depends_on:
       - postgres
     ports:
-      - 5000:4000
+      - 4000:4000
 
   postgres:
     image: postgres
+    network_mode: host
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: greenlight
-      POSTGRES_PASSWORD: green123!
+      # POSTGRES_USER: greenlight
+      POSTGRES_PASSWORD: green123
     volumes:
       - greenlight_postgresql:/var/lib/postgresql
       - greenlight_postgresql_data:/var/lib/postgresql/data
