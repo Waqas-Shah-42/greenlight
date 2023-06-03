@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+
   greenlight:
     build: .
     container_name: greenlight

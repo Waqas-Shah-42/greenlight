@@ -1,16 +1,22 @@
 package data
 
 import (
+<<<<<<< HEAD
 	"database/sql"
+=======
+>>>>>>> 716b29b5dc476360e22e093e9bebeb28d06944ca
 	"time"
 
 	"github.com/Waqas-Shah-42/greenlight/internal/validator"
 )
+<<<<<<< HEAD
 
 
 type MovieModel struct {
     DB *sql.DB
 }
+=======
+>>>>>>> 716b29b5dc476360e22e093e9bebeb28d06944ca
 
 type Movie struct {
 	ID        int64     `json:"id"`
@@ -38,6 +44,7 @@ func ValidateMovie(v *validator.Validator, movie *Movie) {
     v.Check(len(movie.Genres) <= 5, "genres", "must not contain more than 5 genres")
     v.Check(validator.Unique(movie.Genres), "genres", "must not contain duplicate values")
 }
+<<<<<<< HEAD
 
 
 func (m MovieModel) Insert(movie *Movie) error {
@@ -55,3 +62,5 @@ func (m Movie) Update(movie *Movie) error {
 func (m Movie) Delete(id int64) error {
     return nil
 }
+=======
+>>>>>>> 716b29b5dc476360e22e093e9bebeb28d06944ca
